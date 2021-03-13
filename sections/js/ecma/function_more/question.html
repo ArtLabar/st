@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../../../js/all.min.js"></script>
+</head>
+<body>
+    <section class="questions-block">
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое "остаточные параметры" в функции?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Остаточные праметры позволяют собрать переданные функции аргументы в один массив, достоп к которому возможен в теле функции.</p>
+                <pre>
+                    <code>
+function sumAll(x, y, ...args) {
+
+    return args;
+}
+
+sumAll(1, 2, 3, 4, 5, 10, 20); // [3, 4, 5, 10, 20]
+                    </code>
+                </pre>
+                <p class="qa-box__answer">В теле функции также есть переменная arguments, которая ссылается на псевдомассив, состоящий из всех!!! переданных аргументов. В теле срелочной функции такой переменной нет!</p>
+                <pre>
+                    <code>
+function sumAll(x, y, ...args) {
+
+    return arguments;
+}
+
+sumAll(1, 2, 3, 4, 5, 10, 20); // [1, 2, 3, 4, 5, 10, 20]
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое "оператор расширения"?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Оператор позволяет получить из массива список параметров. Такая операция бывает нужна при вызове функции, котора может ожедать множество параметров. Также можно использывать при создании массива, в который мы хотим поместить элементы другого массива.</p>
+                <pre>
+                    <code>
+let arr = [3, 5, 1];
+alert( Math.max(...arr) ); // 5 (оператор "раскрывает" массив в список аргументов)
+
+let arr1 = [1, -2, 3, 4];
+let arr2 = [8, 3, -8, 1];
+alert( Math.max(1, ...arr1, 2, ...arr2, 25) ); // 25
+
+let arr = [3, 5, 1];
+let arr2 = [8, 9, 15];
+let merged = [0, ...arr, 2, ...arr2];
+
+let str = "Привет";
+alert( [...str] ); // П,р,и,в,е,т
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Обратите внимание, как оператор расширения можно использывать со строкой.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает метод Array.from()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Он из переданного ему аргумента делает массив и возвращает его. Он более универсален, чем [...value], так как работает не только с итерируемыми объектами.</p>
+                <pre>
+                    <code>
+let str = "Привет";
+
+Array.from(str); // [П, р, и, в, е, т]
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Вы понимаете, что [...value] - это оператор расширения. Как он работает в данном случае?</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Расскажите, что такое LexicalEnvironment?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">В JavaScript у каждой выполняемой функции, блока кода и скрипта есть связанный с ними внутренний (скрытый) объект, называемый лексическим окружением LexicalEnvironment. Объект лексического окружения состоит из двух частей:</p>
+                <p class="qa-box__answer">1. Environment Record – объект, в котором как свойства хранятся все локальные переменные (а также некоторая другая информация, такая как значение this).</p>
+                <p class="qa-box__answer">2. Ссылка на внешнее лексическое окружение – то есть то, которое соответствует коду снаружи (снаружи от текущих фигурных скобок).</p>                
+                <p class="qa-box__answer">"Переменная" – это просто свойство специального внутреннего объекта: Environment Record. «Получить или изменить переменную», означает, «получить или изменить свойство этого объекта».</p>
+                <pre>
+                    <code>
+let name = "John";
+
+function sayHi() {
+    alert("Hi, " + name);
+}
+
+name = "Pete";
+
+sayHi(); // Pete
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Функция получает текущее значение внешних переменных, то есть, их последнее значение. Новое лексическое окружение функции создаётся каждый раз, когда функция выполняется.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Раскажите об особенностях переменных, объявленных с помощью ключевого слова var?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Такие переменные становятся глобальными. Также объявление перменной всплывает, но не присваиваение значения. Но стоит помнить, что при объявлении переменной в теле функции, она глобальной не становится. Это справедливо только для других видов блоков кода.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно записать переменную в глобальный объект?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Глобальный объект может называться по разному, в зависимости от среды выполнения. В браузере это wihdow, в Node.js это global. Универсальное имя для глобального объекта - globalThis.</p>
+                <pre>
+                    <code>
+globalThis === wihdow // true;
+
+var x = 10; //устаревший способ
+window.x = 10; //лучше сдедать так
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Переменные, объявленные при помощи ключевого слова var, становятся свойствами глобального объекта. Однако, этот способ старый и лучше так не делать. При необходимости, лучше задать свойство напрямую. По возможности, лучше избегать создание глобальных переменных.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">К какому типу данных принадлежит функция?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Функция является объектом. Она имеет свои свойства и методы. length - это ожидаемое количество аргументов, которое расчитывает получить функция(остаточные параметры не учитываются). name - это имя функции, которе ей было задано при иницилизации.</p>
+                <pre>
+                    <code>
+function foo(){}
+
+let func = function(x, y){}
+
+foo.name; // foo
+func.name; // func
+func.length; // 2
+
+func.x = 10;
+foo.y = 20;
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Для функции можно задавать пользывательские методы и свойства.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое Named Function Expression?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это способ объявления функции, схожий с Function Expression, но с присвоением ей имени. Данное имя доступно только в теле этой функции.</p>
+                <pre>
+                    <code>
+let sayHi = function func(who) {
+    if (who) {
+        alert(`Hello, ${who}`);
+    } else {
+        func("Guest"); // Теперь всё в порядке
+    }
+};
+
+let foo = sayHi;
+sayHi = null;
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Это необходимо для того, чтобы функция могла вызвать саму себя в теле функции.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Раскажите о синтаксисе new Function()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Данный способ позволяет создавать функцию налету.</p>
+                <pre>
+                    <code>
+let sum = new Function('a', 'b', 'return a + b');
+
+sum(1, 2); // 3
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Функция, созданная таким способом не запоминает место своего создания и ссылается в замыкании на глобальный объект.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Объясните, как работают setTimeout() и setInterval()? Что они принимают и что они возвращают?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Данные функции не являются частью спецификации, но они есть практически в любой среде выполнения. ФУнкция прнимает функцию или строку кода, который будет преобразован в функцию, значение задержки, аргументы, которые будет переданные в функцию. Возвращает идентификатор таймера.</p>
+                <pre>
+                    <code>
+let timerId1 = setTimeout(func|code, [delay], [arg1], [arg2], ...);
+clearTimeout(timerId1);
+
+let timerId2 = setInterval(func|code, [delay], [arg1], [arg2], ...);
+clearInterval(timerId2)
+
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Предпочтительнее передавать функцию, а не стоку кода!</p>
+                <p class="qa-box__answer">Функцию setTimeout можно вызывать рекурсивно(ингда это лучше чем setInterval) либо с нулевым значением задержки(event loop).</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое функция-декоратор?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это функция, которая принимает другую функцию и изменяет ее поведение.</p>
+                <pre>
+                    <code>
+function slow(x) {
+    // здесь могут быть ресурсоёмкие вычисления
+    alert(`Called with ${x}`);
+    return x;
+    }
+    
+    function cachingDecorator(func) {
+    let cache = new Map();
+    
+    return function(x) {
+        if (cache.has(x)) {    // если кеш содержит такой x,
+        return cache.get(x); // читаем из него результат
+        }
+    
+        let result = func(x); // иначе, вызываем функцию
+    
+        cache.set(x, result); // и кешируем (запоминаем) результат
+        return result;
+    };
+}
+    
+slow = cachingDecorator(slow);
+
+slow(1); // slow(1) кешируем
+slow(1) // возвращаем из кеша
+
+slow(2); // slow(2) кешируем
+slow(2) // возвращаем из кеша
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Функция-декоратор не меняет исходную функцию, она только добавляет ей функциональности.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Объясните, как работает встроенный метод функций .call()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Он запускает функцию, используя первый аргумент как её контекст this, а последующие – как её аргументы.</p>
+                <pre>
+                    <code>
+func.call(context, arg1, arg2, ...);
+
+function say(phrase) {
+    alert(this.name + ': ' + phrase);
+  }
+  
+  let user = { name: "John" };
+  
+  // 'user' становится 'this', и "Hello" становится первым аргументом
+  say.call( user, "Hello" ); // John: Hello
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Объясните, как работает встроенный метод функций .apply()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Он выполняет func, устанавливая this=context и принимая в качестве списка аргументов псевдомассив args. Единственная разница в синтаксисе между call и apply состоит в том, что call ожидает список аргументов, в то время как apply принимает псевдомассив.</p>
+                <pre>
+                    <code>
+func.apply(context, args)
+
+
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое "заимствование метода"?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Заимствование метода - это года мы берем метод из одного объекта и вызывает его в контексте другога.</p>
+                <pre>
+                    <code>
+function join() {
+    return [].join.call(arguments, '**');
+}
+
+let str = join(1, 2, 3, 4); // '1**2**3**4'
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Псевдомассив не имеет своего метода join. Однако, мы можем его взять из массива и вызвать в контексте псевдомассива arguments.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как привязать контекст при помощи метода функции .bind()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">В современном JavaScript у функций есть встроенный метод bind, который позволяет зафиксировать this.</p>
+                <pre>
+                    <code>
+let boundFunc = func.bind(context);
+
+let user = {
+    firstName: "Вася"
+};
+  
+  function func() {
+    alert(this.firstName);
+}
+  
+let funcUser = func.bind(user);
+funcUser(); // Вася
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Объясните, что такое "частичное применение"?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">При помощи встроенного метода .bind() можно привязать не только this, но и аргументы.</p>
+                <pre>
+                    <code>
+function mul(a, b) {
+    return a * b;
+}
+    
+let double = mul.bind(null, 2);
+
+double(3) // = mul(2, 3) = 6
+double(4) // = mul(2, 4) = 8
+double(5) // = mul(2, 5) = 10
+                    </code>
+                </pre>
+                <p class="qa-box__answer">В качестве this можно передать любой объект, но как правило это null.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

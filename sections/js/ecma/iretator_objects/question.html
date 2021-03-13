@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../../../js/all.min.js"></script>
+</head>
+<body>
+    <section class="questions-block">
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое итерируемые(перебираемые) объекты?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Перебираемые (или итерируемые) объекты – это концепция, которая позволяет использовать любой объект в цикле for..of.
+                <br />
+                Конечно же, сами массивы являются перебираемыми объектами. Но есть и много других встроенных перебираемых объектов, например, строки. Если объект не является массивом, но представляет собой коллекцию каких-то элементов, то удобно использовать цикл for..of для их перебора.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Чем отличаются итрируемые объекты и как они работают?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Итерируемый объект должен иметь специальный метод с ключщм Symbol.iterator, который вызывается при запускании цикла for ... of. Данные метод должен вернуть итератор - специальный объект, с методом next(). Если же метода с ключом Symbol.iterator нет, то будет ошибка.</p>
+                <p class="qa-box__answer">Дальше цикл for...of  будет работать только с итератором. Каждая итерация запускает метод next(), который должен вернуть объект типа {done: Boolean, value: any}, где свойство done сообщает, нужно ли завершать итерацию.</p>
+                <pre>
+                    <code>
+let range = {
+    from: 1,
+    to: 5
+};
+    
+// 1. вызов for..of сначала вызывает эту функцию
+range[Symbol.iterator] = function() {
+
+// ...она возвращает объект итератора:
+// 2. Далее, for..of работает только с этим итератором, запрашивая у него новые значения
+    return {
+        current: this.from,
+        last: this.to,
+
+        // 3. next() вызывается на каждой итерации цикла for..of
+        next() {
+            // 4. он должен вернуть значение в виде объекта {done:.., value :...}
+            if (this.current <= this.last) {
+                return { done: false, value: this.current++ };
+            } else {
+                return { done: true };
+            }
+        }
+    };
+};
+
+for (let num of range) {
+alert(num); // 1, 2, 3, 4, 5
+}
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Обратите внимание на то, что инерируемый объект и псевдомассив это не одно и то же. Итерируемые объекты – это объекты, которые реализуют метод Symbol.iterator, а псевдомассив, это объекты, у которых есть индексы и свойство length, то есть, они выглядят как массивы. Строка является и итерируемым объектом, и псевдомассивом однавременно.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Расскажите, как работает Array.from()? Опишите его синтаксис? Какие аргументы он принимает?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Данный метод принимает псевдомассив или итерируемые объект и возвращает настоящий массив.</p>
+                <p class="qa-box__answer">Дополнительно метод может принимать два необязательных параметра: функция, которая в аргументе принимает каждый элемент и возвращает значение, которо будет записано в конечный массив, и значение контекста для этой функции.</p>
+                <pre>
+                    <code>
+Array.from(obj, mapFn, thisArg);
+
+let arrayLike = {
+    0: "Hello",
+    1: "World",
+    length: 2
+  };
+  
+  let arr = Array.from(arrayLike); // (*)
+  arr; // ['Hello', 'World']
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Обратите внимание на то, почему arrayLike является псевдомассивом. Он имеет целочисленные ключи и свойство length.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое объект Map?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Map - это объект, у которого ключи могут быть любого типа(в т.ч. объекты, массивы, null, NaN и так далее). Создается коллекция при помощи конструктора new Map(). Конструктор принимает массив массивов, каждый из которых состоит из ключа и значения.</p>
+                <pre>
+                    <code>
+let collection = new Map([[1, 'hello'], [null, 'another item'], [{x:20}, [1, 2, 3]]);
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Обратите внимание, что ключи и значения могут быть обсолютно любыми.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Перечислите основные методы и свойства объекта Map?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">
+                new Map() – создаёт коллекцию.
+                <br />
+                map.set(key, value) – записывает по ключу key значение value.
+                <br />
+                map.get(key) – возвращает значение по ключу или undefined, если ключ key отсутствует.
+                <br />
+                map.has(key) – возвращает true, если ключ key присутствует в коллекции, иначе false.
+                <br />
+                map.delete(key) – удаляет элемент по ключу key.
+                <br />
+                map.clear() – очищает коллекцию от всех элементов.
+                <br />
+                map.size – возвращает текущее количество элементов.
+                </p>
+                <pre>
+                    <code>
+let map = new Map();
+
+map.set("1", "str1");    // строка в качестве ключа
+map.set(1, "num1");      // цифра как ключ
+map.set(true, "bool1");  // булево значение как ключ
+
+// помните, обычный объект Object приводит ключи к строкам?
+// Map сохраняет тип ключей, так что в этом случае сохранится 2 разных значения:
+alert(map.get(1)); // "num1"
+alert(map.get("1")); // "str1"
+
+alert(map.size); // 3
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Каждый вызов map.set возвращает объект map, так что мы можем объединить вызовы в цепочку</p>
+                <pre>
+                    <code>
+map.set("1", "str1")
+    .set(1, "num1")
+    .set(true, "bool1");
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как осуществляется перебор объекта Map?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Для перебора коллекции Map есть 3 метода:
+                <br />
+                map.keys() – возвращает итерируемый объект по ключам
+                <br />
+                map.values() – возвращает итерируемый объект по значениям
+                <br />
+                map.entries() – возвращает итерируемый объект по парам вида [ключ, значение], этот вариант используется по умолчанию в for..of.</p>
+                <pre>
+                    <code>
+let recipeMap = new Map([
+    ["огурец", 500],
+    ["помидор", 350],
+    ["лук",    50]
+]);
+
+// перебор по ключам (овощи)
+for (let vegetable of recipeMap.keys()) {
+alert(vegetable); // огурец, помидор, лук
+}
+
+// перебор по значениям (числа)
+for (let amount of recipeMap.values()) {
+alert(amount); // 500, 350, 50
+}
+
+// перебор по элементам в формате [ключ, значение]
+for (let entry of recipeMap) { // то же самое, что и recipeMap.entries()
+alert(entry); // огурец,500 (и так далее)
+}
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Перебор в объекте Map происходит в том же порядке, в каком происходило добавление, в отличии от обычных объектов.</p>
+                <p class="qa-box__answer">Кроме этого, Map имеет встроенный метод forEach, схожий со встроенным методом массивов Array.</p>
+                <pre>
+                    <code>
+// выполняем функцию для каждой пары (ключ, значение)
+recipeMap.forEach((value, key, map) => {
+    alert(`${key}: ${value}`); // огурец: 500 и так далее
+});
+                    </code>
+                </pre>               
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как из обчного объекта получить Map и наоборот?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Если у нас уже есть обычный объект, и мы хотели бы создать Map из него, то поможет встроенный метод Object.entries(obj), который получает объект и возвращает массив пар ключ-значение для него, как раз в этом формате.</p>
+                <pre>
+                    <code>
+let obj = {
+    name: "John",
+    age: 30
+};
+    
+let map = new Map(Object.entries(obj));
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Здесь Object.entries возвращает массив пар ключ-значение: [ ["name","John"], ["age", 30] ]. Это именно то, что нужно для создания Map.</p>
+                <p class="qa-box__answer">Есть метод Object.fromEntries, который делает противоположное: получив массив пар вида [ключ, значение], он создаёт из них объект:</p>
+                <pre>
+                    <code>
+let prices = Object.fromEntries([
+['banana', 1],
+['orange', 2],
+['meat', 4]
+]);  // now prices = { banana: 1, orange: 2, meat: 4 }
+
+let map = new Map();
+map.set('banana', 1);
+map.set('orange', 2);
+map.set('meat', 4);
+
+let obj = Object.fromEntries(map.entries()); // make a plain object (*)
+
+// готово!
+// obj = { banana: 1, orange: 2, meat: 4 }
+
+alert(obj.orange); // 2
+
+let obj = Object.fromEntries(map); // убрать .entries()
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Это то же самое, так как Object.fromEntries ожидает перебираемый объект в качестве аргумента, не обязательно массив. А перебор map как раз возвращает пары ключ/значение, так же, как и map.entries(). Так что в итоге у нас будет обычный объект с теми же ключами/значениями, что и в map.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое объект Set?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Объект Set – это особый вид коллекции: «множество» значений (без ключей), где каждое значение может появляться только один раз. new Set(iterable) – создаёт Set, и если в качестве аргумента был предоставлен итерируемый объект (обычно это массив), то копирует его значения в новый Set.</p>
+                <pre>
+                    <code>
+let set = new Set([1, 2, 3, 4, 5, 6]);
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Перечислите основные методы и свойства объекта Set?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">set.add(value) – добавляет значение (если оно уже есть, то ничего не делает), возвращает тот же объект set.
+                <br />
+                set.delete(value) – удаляет значение, возвращает true, если value было в множестве на момент вызова, иначе false.
+                <br />
+                set.has(value) – возвращает true, если значение присутствует в множестве, иначе false.
+                <br />
+                set.clear() – удаляет все имеющиеся значения.
+                <br />
+                set.size – возвращает количество элементов в множестве.</p>
+                <pre>
+                    <code>
+let set = new Set();
+
+let john = { name: "John" };
+let pete = { name: "Pete" };
+let mary = { name: "Mary" };
+
+// считаем гостей, некоторые приходят несколько раз
+set.add(john);
+set.add(pete);
+set.add(mary);
+set.add(john);
+set.add(mary);
+
+// set хранит только 3 уникальных значения
+alert(set.size); // 3
+
+for (let user of set) {
+    alert(user.name); // John (потом Pete и Mary)
+}
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно перебрать объект Set?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Мы можем перебрать содержимое объекта set как с помощью метода for..of, так и используя forEach.</p>
+                <pre>
+                    <code>
+let set = new Set(["апельсин", "яблоко", "банан"]);
+
+for (let value of set) alert(value);
+
+// то же самое с forEach:
+set.forEach((value, valueAgain, set) => {
+    alert(value);
+});
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Set имеет те же встроенные методы, что и Map:
+                <br />
+                set.values() – возвращает перебираемый объект для значений
+                <br />
+                set.keys() – то же самое, что и set.values(), присутствует для обратной совместимости с Map
+                <br />
+                set.entries() – возвращает перебираемый объект для пар вида [значение, значение], присутствует для обратной совместимости с Map.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что представляет из себя объект WeakMap? Чем он отличается от объекта Map</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Основное его отличие состоит в том, что ключами данного объекта могут быть только объекты. Если объект перестает быть достижимым, он удаляется сборщиком мусора и автоматически утилизируется из объекта WeakMap. Данный объект невозможно перебрать и он имеет всег несколько методов: 
+                <br />
+                weakMap.get(key)
+                <br />
+                weakMap.set(key, value)
+                <br />
+                weakMap.delete(key)
+                <br />
+                weakMap.has(key)
+                </p>
+                <pre>
+                    <code>
+let john = { name: "John" };
+
+let weakMap = new WeakMap();
+weakMap.set(john, "...");
+
+john = null; // перезаписываем ссылку на объект
+
+// объект john удалён из памяти!
+                    </code>
+                </pre>
+                <p class="qa-box__answer">В данном случае объект john удалится и из weakMap, так как стал недостжимым?</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что представляет из себя объект WeakSet и чем он отличаетя от объекта Set?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Коллекция WeakSet ведёт себя аналогична Set, но мы можем добавлять в WeakSet только объекты (не примитивные значения). Объект присутствует в множестве только до тех пор, пока доступен где-то ещё. Как и Set, она поддерживает add, has и delete, но не size, keys() и не является перебираемой.</p>
+                <pre>
+                    <code>
+let visitedSet = new WeakSet();
+
+let john = { name: "John" };
+let pete = { name: "Pete" };
+let mary = { name: "Mary" };
+
+visitedSet.add(john); // John заходил к нам
+visitedSet.add(pete); // потом Pete
+visitedSet.add(john); // John снова
+
+// visitedSet сейчас содержит двух пользователей
+
+// проверим, заходил ли John?
+alert(visitedSet.has(john)); // true
+
+// проверим, заходила ли Mary?
+alert(visitedSet.has(mary)); // false
+
+john = null;
+
+// структура данных visitedSet будет очищена автоматически
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делают методы keys(), values(), entries()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Методы поддерживаются для структур: Map, Set, Array</p>
+                <p class="qa-box__answer">Простые объекты также можно перебирать похожими методами, но синтаксис немного отличается. Для простых объектов доступны следующие методы:
+                <br />
+                Object.keys(obj) – возвращает массив ключей.
+                <br />
+                Object.values(obj) – возвращает массив значений.
+                <br />
+                Object.entries(obj) – возвращает массив пар [ключ, значение].
+                </p>
+                <pre>
+                    <code>
+let user = {
+    name: "John",
+    age: 30
+};
+    
+Object.keys(user) // ["name", "age"]
+Object.values(user) // ["John", 30]
+Object.entries(user) // [ ["name","John"], ["age",30] ]
+
+let user = {
+    name: "John",
+    age: 30
+};
+  
+// перебор значений
+for (let value of Object.values(user)) {
+alert(value); // John, затем 30
+}
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Вы понимаете, что [...value] - это оператор расширения. Как он работает в данном случае?</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает метод Object.fromEntries()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Данный метод используется для преобразования массива, формата [[key, value], [key, value]] в обычный объект.</p>
+                <pre>
+                    <code>
+let prices = {
+    banana: 1,
+    orange: 2,
+    meat: 4,
+};
+    
+let doublePrices = Object.fromEntries(
+// преобразовать в массив, затем map, затем fromEntries обратно объект
+Object.entries(prices).map(([key, value]) => [key, value * 2])
+);
+
+alert(doublePrices.meat); // 8
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое "деструктурирующее присваивание"?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Деструктурирующее присваивание – это специальный синтаксис, который позволяет нам «распаковать» массивы или объекты в кучу переменных, так как иногда они более удобны.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Расскажите, как происходит деструктуризация массива?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Элементы из массива переносятся в переменные в соответствующем порядке.</p>
+                <pre>
+                    <code>
+let arr = ["one", "two"]
+
+let [first, second] = arr;
+
+alert(first); // one
+alert(second);  // two
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Есил нужно пропустить элементы, то это можно сделать, используюя запятые.</p>
+                <pre>
+                    <code>
+let arr = ["one", "two", three, fore, five]
+
+let [first, , , fourth, fivth] = arr;
+
+alert(fourth); // fore
+alert(fivth);  // five
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Справа можно указать любой перебираемый объект</p>
+                <pre>
+                    <code>
+let [a, b, c] = "abc";
+let [one, two, three] = new Set([1, 2, 3]);
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Слева могту быть не только переменные, но и любая сущность, которой можно присвоить значение:</p>
+                <pre>
+                    <code>
+let user = {};
+[user.name, user.surname] = "Ilya Kantor".split(' ');
+
+alert(user.name); // Ilya
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Все элементы, которые не присваиваются переменным, можно собрать в новый массив:</p>
+                <pre>
+                    <code>
+let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+alert(name1); // Julius
+alert(name2); // Caesar
+
+// Обратите внимание, что `rest` является массивом.
+alert(rest[0]); // Consul
+alert(rest[1]); // of the Roman Republic
+alert(rest.length); // 2
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Также возможно деструктурировать элементы из вложенного массива:</p>
+                <pre>
+                    <code>
+let arr = [['one', 1], ['two', 2]];
+
+let [[, first], [, second]] = arr;
+
+alert(first); // 1
+alert(second); // 2
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Расскажите, как происходит деструктуризация объектов?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Присваивание переменным значений свойств из объекта происходит по их ключам. Переменная и ключ должны совпадать. Порядок перечесления не имеет значения.</p>
+                <pre>
+                    <code>
+let options = {
+    title: "Menu",
+    width: 100,
+    height: 200
+};
+    
+    let {title, width, height} = options;
+    
+    alert(title);  // Menu
+    alert(width);  // 100
+    alert(height); // 200
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Можно менять название переменной при помощи двуеточия. А также можно задавать значения по умолчанию.</p>
+                <pre>
+                    <code>
+let options = {
+    width: 100,
+    title: "Menu"
+};
+    
+    let {width: w, height: h = 200, title, mode=test} = options;
+    
+    alert(title);  // Menu
+    alert(w);      // 100
+    alert(h);      // 200
+    alert(mode);   // test
+                    </code>
+                </pre>
+                <p class="qa-box__answer">В объектах также можно исопльзывать rest-оператор и вложунную деструкторизацию.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+<div class="qa-box">
+    <div class="qa-box__question-box">
+        <h2 class="qa-box__question">Что делает метод Array.from()?</h2>
+    </div>
+    <div class="qa-box__answer-box">
+        <p class="qa-box__answer">Он из переданного ему аргумента делает массив и возвращает его. Он более универсален, чем [...value], так как работает не только с итерируемыми объектами.</p>
+        <pre>
+            <code>
+let str = "Привет";
+
+Array.from(str); // [П, р, и, в, е, т]
+            </code>
+        </pre>
+        <p class="qa-box__answer">Вы понимаете, что [...value] - это оператор расширения. Как он работает в данном случае?</p>
+    </div>
+</div>
+

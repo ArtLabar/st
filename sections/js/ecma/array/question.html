@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../../../js/all.min.js"></script>
+</head>
+<body>
+    <section class="questions-block">
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Может ли в массивах быть висячая запятая?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">При помощи каких методов можно удалять и прибавлять элементы в конце массива?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод .pop() удаляет элемент, .push() добавляет.</p>
+                <pre>
+                    <code>
+    let arr = [0, 1, 2, 3, 4, 5];
+
+    arr.pop() // [0, 1, 2, 3, 4]
+    arr.push(6) // [0, 1, 2, 3, 4, 5, 6]
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">При помощи каких методов можно удалять и прибавлять элементы в начале массива?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод .shift() удаляет элемент, а метод .unshift() прибавляет.</p>
+                <pre>
+                    <code>
+let arr = [0, 1, 2, 3, 4, 5];
+
+arr.shift() // [1, 2, 3, 4]
+arr.unshift('one', 'two') // ['one', 'two', 0, 1, 2, 3, 4, 5, 6]
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Методам unshift() и push() можно передавать сколько угодно аргументов, все они будут добавлены в массив.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно перебрать элементы массива?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Перебрать элементы массива можно тремя способами:</p>
+                <ol class="qa-box__order-list">
+                    <li class="qa-box__order-list-item">При помощи цикла for(){}. Это старый метод.</li>
+                    <li class="qa-box__order-list-item">При помощи цикла for...of. Это новый метода, который переберает значения элементов.</li>
+                    <li class="qa-box__order-list-item">При помощи метода for...in. Этот цикл переберает все элементы массива, даже те, которые имеют строковое значение индекса (length, toString), из-за чего использывать его не желательно.</li>
+                </ol>
+                <pre>
+                    <code>
+    for( let item of arr ){
+        console.log(item) // где item это именно значение элемента, а не его индекс.
+    }
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Обратите внимание, что перед переменной item стоит ключевое слово let!</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Опишите работу конструктора new Array().</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Конструктору можно передать список аргументов через запятую, которые станут элементами нового массива. Или же можно передать целое число, в таком случае будет создан массив со значением lenght, равном этому числу.</p>
+                <pre>
+                    <code>
+    let arr = new Array('Попугай', 'Собака', 'Кот');  //['Попугай', 'Собака', 'Кот']
+
+    let arr = new Array(5);
+    arr.length;  // 5
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как работает метод .toString() в массиве?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">В массивах данный метод работает по другому. Он возвращает строку элементов массива, перечисленных через запятую.</p>
+                <pre>
+                    <code>
+    let arr = ['Кот', 'Собака', 'Конь', 'Корова'];
+    alert(arr);  // "Кот,Собака,Конь,Корова"
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Массивы не имеют ни Symbol.toPrimitive, ни функционирующего valueOf, они реализуют только преобразование toString.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Опишите, как работает метод splice()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Данный метод может вырезать часть массива и добавлять на новые элементы. Первым аргументом принимает индекс элемента, с которого нужно начинать преобразования. Второй аргумент - это количество аргументов, которые нужно вырезать.Далее указываются элементы, которые нужно вставить на вырезанный участок.</p>
+                <p class="qa-box__answer">Первый аргумент может быть отричательным, тогда отсчет будет вестись с конца массива(..., -3, -2, -1, 0), где -1 это второй элемент с конца, -2 третий элемент и так далее. Вырезание элементов начинается с указанного включая его.</p>
+                <p class="qa-box__answer">Вторым аргументом может быть 0, тогда ничего вырезаться не будет, а после выбранного элемента будут вставлены новые элементы.</p>
+                <pre>
+                    <code>
+    let arr = [0, 1, 2, 3, 4, 5];
+    arr.splaice(2, 2, 'text', 'word');  // 
+    console.log(arr); // [0, 1, 'text', 'word', 4, 5]
+
+    let arr = [0, 1, 2, 3, 4, 5];
+    arr.splaice(-1, 1, 'text', 'word');  // 4
+    console.log(arr); // [0, 1, 2, 3, 'text', 'word', 5]
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Метод возвращает вырезанную часть массива и изменяет исходный массив.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Опишите работу метода .slice()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Данный метод нужен для вырезания части массива. Принимает два аргумента. Первый - индекс элемента, с которого будет происходить вырезания, включительно. Второй - индекс элемента, до которого будет приосходить вырезния, не включая его. Может принимать отприцательные значения.</p>
+                <pre>
+                    <code>
+    let arr = [0, 1, 2, 3, 4, 5];
+    arr.slice(2, 4);  //  [2, 3]
+    console.log(arr); //  [0, 1, 2, 3, 4, 5]
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Метод возвращает вырезанную часть массива, но не изменяет исходный массив.</p>
+                <p class="qa-box__answer">Помните, как идет отсчет при указании отприцательных значений? Как отсчитываются позиции с конца?</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Опишите принцип работы метода .concat()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод принимает произвольное число аргументов, которые будут добавлены в массив. Исходный массив не изменяется, метод возвращает новый массив.</p>
+                <p class="qa-box__answer">Если передавть в качестве аргумента массив, то будут добавлены его элементы</p>
+                <p class="qa-box__answer">Если передавть в качестве аргумента объект, то он будет добавлен как есть. Но если объект имеет специальное свойство Symbol.isConcatSpreadable, то он обрабатывается concat как массив: вместо него добавляются его числовые свойства. Для корректной обработки в объекте должны быть числовые свойства и length.</p>
+                <pre>
+                    <code>
+let arr = [0, 1];
+arr.concat(6, 7, [8, 9], [[10, 11], 12], {"0": 'zero'});  //  [0, 1, 6, 7, 8, 9, [10, 11], 12, {"0": 'zero'}]
+
+let obj = {"0": 'zero',
+            "1": 'one', 
+            Symbol.isConcatSpreadable: true, 
+            length: 2
+            }
+
+arr.concat(2, 3, obj); // [0, 1, 2, 3, 'zero', 'one']
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Обратите внимание, что вложенные в массив массивы не раскрываются при контектинации.</p>
+                <p class="qa-box__answer">Обратите внимание, что обычный массив просто добавляются в новый массив.</p>
+                <p class="qa-box__answer">Обратите внимание, как добавляются элементы объекта со свойством Symbol.isConcatSpreadable.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как работает метод .forEach() и что он возвращает?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод принимает колбек-функцию, которая поочередно вызываетя для каждого элемента. В аргументы данной функции автоматически передаются значение элемента, его индекс и сам массив соответственно. Метод возвращает underfind, а результат возврата колбек-функции игнорируется.</p>
+                <pre>
+                    <code>
+    arr.forEach(function(item, index, array){
+        console.log(item); // значение элемента
+        console.log(index); // его индекс
+    }); // underfind - итоговый результат вызова метода
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужны методы indexOf/lastIndexOf и includes?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">arr.indexOf(item, from) ищет item, начиная с индекса from, и возвращает индекс, на котором был найден искомый элемент, в противном случае -1.</p>
+                <p class="qa-box__answer">arr.lastIndexOf(item, from) – то же самое, но ищет справа налево.</p>
+                <p class="qa-box__answer">ищет item, начиная с индекса from, и возвращает true, если поиск успешен.</p>
+                <pre>
+                    <code>
+let arr = [1, 0, false];
+
+alert( arr.indexOf(0) ); // 1
+alert( arr.indexOf(false) ); // 2
+alert( arr.indexOf(null) ); // -1
+
+alert( arr.includes(1) ); // true
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Обратите внимание, что методы используют строгое сравнение ===. Таким образом, если мы ищем false, он находит именно false, а не ноль.
+                <br />
+                Если мы хотим проверить наличие элемента, и нет необходимости знать его точный индекс, тогда предпочтительным является arr.includes.
+                <br />                
+                Кроме того, очень незначительным отличием includes является то, что он правильно обрабатывает NaN в отличие от indexOf/lastIndexOf, которые его просто не находят.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Объясните, как работают методы find() и findIndex()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод find() принимает callback-функцию. Если функция возвращает true, поиск прерывается и возвращается item. Если ничего не найдено, возвращается undefined.</p>
+                <pre>
+                    <code>
+let result = arr.find(function(item, index, array) {
+    // если true - возвращается текущий элемент и перебор прерывается
+    // если все итерации оказались ложными, возвращается undefined
+});
+
+let result = arr.findIndex(function(item, index, array) {
+    // если true - возвращается индекс текущего элемента и перебор прерывается
+    // если все итерации оказались ложными, возвращается -1
+});
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Метод arr.findIndex – по сути, то же самое, но возвращает индекс, на котором был найден элемент, а не сам элемент, и -1, если ничего не найдено.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как работает метод filter()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод возвращает массив, который состоит из элементов, для которых callback-функция вернула true</p>
+                <pre>
+                    <code>
+let results = arr.filter(function(item, index, array) {
+    // если true - элемент добавляется к результату, и перебор продолжается
+    // возвращается пустой массив в случае, если ничего не найдено
+});
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как работает метод map()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод arr.map является одним из наиболее полезных и часто используемых. Он вызывает функцию для каждого элемента массива и возвращает массив результатов выполнения этой функции.</p>
+                <pre>
+                    <code>
+let result = arr.map(function(item, index, array) {
+    // возвращается новое значение вместо элемента
+});
+
+let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
+alert(lengths); // 5,7,6
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужно метод sort() и как его настроить?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод применяется для сортировки массива. Он возвращает новый отсортированный массив, но и меняет исходный. По умолчанию элементы сортируются как строки, даже если по факту являются числами. Для того, чтобы метод сортировал числа как нужно, ему нужно передать функцию.</p>
+                <pre>
+                    <code>
+arr.sort( (a, b) => a - b );
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как работает метод reverse()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод меняет порядок элементов в arr на обратный.</p>
+                <pre>
+                    <code>
+let arr = [1, 2, 3, 4, 5];
+arr.reverse();
+
+alert( arr ); // 5,4,3,2,1
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Меняет исходный массив, а также возвращает новый.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как работают методы split() и join()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">split() формирует из строки массив, разбивая строку на элементы в соответствии с переданным разделителем. Вторым аргументом принимает число, обозначающее количество элементов, которые должны быть в массиве.</p>
+                <pre>
+                    <code>
+let names = 'Вася, Петя, Маша';
+
+let arr = names.split(', '); // ['Вася', 'Петя', 'Маша']
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Метод join() наоборот, из элементов массива формирует строку, вставляя между ними переданный разделитель.</p>
+                <pre>
+                    <code>
+let arr = ['Вася', 'Петя', 'Маша'];
+
+let str = arr.join(';'); // объединить массив в строку через ;
+
+alert( str ); // Вася;Петя;Маша
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужны методы reduce()/reduceRight()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Методы используются для вычисления какого-нибудь единого значения на основе всего массива.</p>
+                <pre>
+                    <code>
+let value = arr.reduce(function(previousValue, item, index, array) {
+    // ...
+}, [initial]);
+                    </code>
+                </pre>
+                <p class="qa-box__answer">При вызове функции результат её вызова на предыдущем элементе массива передаётся как первый аргумент.</p>
+                <pre>
+                    <code>
+let arr = [1, 2, 3, 4, 5];
+
+let result = arr.reduce((sum, current) => sum + current, 0);
+
+alert(result); // 15
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Если методу не передать начальное значение, то оно будет взять из первого элемента массива, а перебор массива начнется со второга элемента. Но если массив окажется пустым, то в таком случае будет ошибка, поэтому всегда рекомендуется указывать первоначальное значение.</p>
+                <p class="qa-box__answer">Метод .reduceRight() работает аналогично, но слева направо.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужен метод Array.isArray()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Массивы не образуют отдельный тип языка. Они основаны на объектах. Поэтому typeof не может отличить простой объект от массива. Для выявления массива лучше использывать Array.isArray():</p>
+                <pre>
+                    <code>
+Array.isArray({}); // false
+
+Array.isArray([]); // true
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Расскажите об необязательном втором аргументе thisArg, который принимают многие методы массива?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Почти все методы массива, которые вызывают функции – такие как find, filter, map, за исключением метода sort, принимают необязательный параметр thisArg. </p>
+                <pre>
+                    <code>
+arr.find(func, thisArg);
+arr.filter(func, thisArg);
+arr.map(func, thisArg);
+// ...
+// thisArg - это необязательный последний аргумент
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Значение параметра thisArg становится this для func.</p>
+                <pre>
+                    <code>
+let army = {
+    minAge: 18,
+    maxAge: 27,
+    canJoin(user) {
+        return user.age >= this.minAge && user.age < this.maxAge;
+    }
+};
+    
+let users = [
+{age: 16},
+{age: 20},
+{age: 23},
+{age: 30}
+];
+    
+// найти пользователей, для которых army.canJoin возвращает true
+let soldiers = users.filter(army.canJoin, army);
+
+alert(soldiers.length); // 2
+alert(soldiers[0].age); // 20
+alert(soldiers[1].age); // 23
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

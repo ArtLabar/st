@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../../../js/all.min.js"></script>
+</head>
+<body>
+    <section class="questions-block">
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Какие флаги имеют свойства объекта и каковы их значения по умолчанию?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Помимо значения value, свойства объекта имеют 3 специальных атрибута:</p>
+                <pre>
+                    <code>
+                        writable // можно ли перезаписать свойство или изменять его 
+                        enumerable // перечесляется ли свойство в циклах
+                        configurable // можно ли менять атрибуты свойства или удалять его
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Данные атрибуты являются скрытыми.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужен метод Object.getOwnPropertyDescriptor() и какие аргументы он принимает?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Данный метод нужен для того, чтобы получить дискриптор свойства - объект, который содержит значение свойства и все его флаги. Первым аргументом он принимает объект, вторым - ключь (свойство).</p>
+                <pre>
+                    <code>
+let user = {
+    name: "John"
+};
+
+let descriptor = Object.getOwnPropertyDescriptor(user, 'name');
+
+console.log( descriptor );
+/* дескриптор свойства:
+{
+"value": "John",
+"writable": true,
+"enumerable": true,
+"configurable": true
+}
+*/
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужен метод Object.defineProperty() и какие аргументы он принимает?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Данный метод нужен для изменения флага. Первый аргумент - объект, второй - ключь, третий - дискриптор.</p>
+                <pre>
+                    <code>
+let user = {};
+
+Object.defineProperty(user, "name", {
+    value: "John"
+});
+
+let descriptor = Object.getOwnPropertyDescriptor(user, 'name');
+
+console.log(descriptor);
+/*
+{
+    "value": "John",
+    "writable": false,
+    "enumerable": false,
+    "configurable": false
+}
+*/
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Как мы знаем, все флаги автоматически получают значение true. Однако, когда мы добавляем value таким способой(тем самым создаем новое свойство), флаги получают значение false. Через дескриптор можно передать все либо несколько флагов и их значния(дескриптор - это объект).</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что будет, если флагу configurable присвоить значение false?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это дорога в один конец. После этого мы уже не сможем изменить какой либо флаг свойства. При попытке их изменить будет сгенерированна ошибка.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как работает метод Object.defineProperties() и какие аргументы он принимает?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Данный метод нужен для изменения флагов сразу нескольких свойств. Первый аргумент - целевой объект, второй передоваемый объект, какждое свойство которого должно совпадать с изменяемым свойством целевого объекта, а значение - дискриптор.</p>
+                <pre>
+                    <code>
+Object.defineProperties(user, {
+    name: { value: "John", writable: false },
+    surname: { value: "Smith", writable: false },
+    // ...
+});
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужен метод Object.getOwnPropertyDescriptors() и какие аргументы он принимает?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Данный метод необходим, чтобы получить дискрипторы всех свойств сразу. В качестве аргумента он принимает объект.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно использовать Object.getOwnPropertyDescriptors() при клонировании объекта?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Этот метод лучше использывать при клонировании, так как он копирует свойства вместе с флагами, а также скрытые свойства и непреречисляемые совйства. Также будут скопированы свойства-символы. Обычным циклом for...in этого сделать не получится.</p>
+                <pre>
+                    <code>
+let clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj));
+                    </code>
+                </pre>
+                <p class="qa-box__answer">В качестве this можно передать любой объект, но как правило это null.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает Object.preventExtensions(obj)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Запрещает добавлять новые свойства в объект.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает Object.seal(obj)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Запрещает добавлять/удалять свойства. Устанавливает configurable: false для всех существующих свойств.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает Object.freeze(obj)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Запрещает добавлять/удалять/изменять свойства. Устанавливает configurable: false, writable: false для всех существующих свойств.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает Object.isExtensible(obj)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Возвращает false, если добавление свойств запрещено, иначе true.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает Object.isSealed(obj))?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Возвращает true, если добавление/удаление свойств запрещено и для всех существующих свойств установлено configurable: false.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает Object.isFrozen(obj)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Возвращает true, если добавление/удаление/изменение свойств запрещено, и для всех текущих свойств установлено configurable: false, writable: false.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое свойства-данные и свойства-аксессоры и чем они отличаются?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Свойства данные - это обычные свойства, с которыми мы привыкли работать. Свойства-акссесоры - это по сути функции, которые используются для присвоения и получения значений, но внешне выглядят как обычные свойства.</p>
+                <pre>
+                    <code>
+let user = {
+    name: "John",
+    surname: "Smith",
+    
+    get fullName() {
+        return `${this.name} ${this.surname}`;
+    },
+    
+    set fullName(value) {
+        [this.name, this.surname] = value.split(" ");
+    }
+};
+
+alert(user.fullName); // John Smith
+    
+// set fullName запустится с данным значением
+user.fullName = "Alice Cooper";
+
+alert(user.fullName); // Alice Cooper
+alert(user.name); // Alice
+alert(user.surname); // Cooper
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое свойства-данные и свойства-аксессоры и чем они отличаются?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Свойства данные - это обычные свойства, с которыми мы привыкли работать. Свойства-акссесоры - это по сути функции, которые используются для присвоения и получения значений, но внешне выглядят как обычные свойства.</p>
+                <pre>
+                    <code>
+        let user = {
+        name: "John",
+        surname: "Smith",
+        
+        get fullName() {
+        return `${this.name} ${this.surname}`;
+        },
+        
+        set fullName(value) {
+        [this.name, this.surname] = value.split(" ");
+        }
+        };
+        
+        alert(user.fullName); // John Smith
+        
+        // set fullName запустится с данным значением
+        user.fullName = "Alice Cooper";
+        
+        alert(user.fullName); // Alice Cooper
+        alert(user.name); // Alice
+        alert(user.surname); // Cooper
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Чем отличаются дискрипторы свойств-аксессоров от совйств-данных?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Свойства-аксессоры не имеют value и writable, но взамен предлагают функции get и set. Для создания аксессора fullName при помощи defineProperty мы можем передать дескриптор с использованием get и set</p>
+                <pre>
+                    <code>
+let user = {
+    name: "John",
+    surname: "Smith"
+};
+    
+Object.defineProperty(user, 'fullName', {
+    get() {
+        return `${this.name} ${this.surname}`;
+    },
+
+    set(value) {
+        [this.name, this.surname] = value.split(" ");
+    }
+});
+
+alert(user.fullName); // John Smith
+
+for(let key in user) alert(key); // name, surname
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Обратили внимание, что свойство fullName не перечисляется в цикле? Почему так происходит?</p>
+                <p class="qa-box__answer"> свойство объекта может быть либо свойством-аксессором (с методами get/set), либо свойством-данным (со значением value). При попытке указать и get, и value в одном дискрипторе будет ошибка.</p>
+                <pre>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

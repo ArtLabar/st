@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../../../js/all.min.js"></script>
+</head>
+<body>
+    <section class="questions-block">
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">На что ссылается скрытое свойство объекта [[Prototype]]?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Оно либо равно null, либо ссылается на другой объект. Этот объект называется «прототип»</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли при помощи свойства __proto__ получить либо установить прототип объекта?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да. Оно считается устаревшим, но по факту продолжает работать во многих средах. Данное свойство является геттером/сеттером.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Перечисляет ли цикл for … in свойства и методы из объекта-прототипа?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает obj.hasOwnProperty(key)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод проверяет, если собственное ненаследуемое свойство в объекте obj с ключом key. Возвращает true либо false.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">На что ссылается свойство Function.prototype?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">На объект, который будет установлен в качестве прототипа нового созданного объекта. Этот свойство используется только в момент вызова конструктора и создания объекта.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">По умолчанию свойство Function.prototype ссылается на объект с одним свойством. Какое это свойство?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">{constructor: Function} - это свойство ссылается на функцию-конструктор.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Почему при создании объекта при помощи литерала {}, у него есть методы, как toString(), valueOf() и так далее? Ведь мы их не объявляли.</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">При создании объекта при помощи литерала неявно вызывается конструктор new Object() и новый объект получает прототип Object.prototype. Из него и берутся методы и свойства, которые мы сами не объявляли.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Какой объект-прототип у массива? Какой объект-прототип, в свою очередь, у этого объекта?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">У массива прототипом является Array.prototype, который в свою очередь имеет прототип Object.prototype
+                    <br />
+                    [] => Array.prototype => Object.prototype => null
+                    </p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что будет, если изменить прототип встроенного объекта? Получат ли уже созданные объекты эти изменения?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Все уже созданные объекты получать изменения. Этим встроенные объекты отличаются от тех, которые мы создаем при помощи своих конструкторов. </p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">В каких случаях считается оправданным изменения прототипов встроенных объектов?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">При создании полифилов.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли взять метод из прототипа и присвоить его свойству другого объекта?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да.</p>
+                <pre>
+                    <code>
+obj.join = Array.prototype.join;
+obj.join(': ');                        
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает метод Object.create(prototype, [descriptors])?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Создает новый объект и устанавливает ему прототип prototype. Вторый необязательным параметром принимает объект дискриптор.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает метод Object.getPrototypeOf(obj)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Позволяет получить прототип объекта.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает метод Object.setPrototypeOf(obj, prototype)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Устанавливает прототип объекта.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делают методы Object.keys(obj) / Object.values(obj) / Object.entries(obj)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Методы позволяют получить массив перечисляемых собственных ключей / массив перечисляемых собственных значений / массив перечисляемых собственных пар [key, value].</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает методы Object.getOwnPropertySymbols(obj)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Возвращает массив всех символьных ключей объекта.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает методы Object.getOwnPropertyNames(obj)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Возвращает массив всех строковых ключей объекта.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает методы Reflect.ownKeys(obj)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Возвращает массив всех ключей объекта.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

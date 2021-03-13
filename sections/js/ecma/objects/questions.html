@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../../../js/all.min.js"></script>
+</head>
+<body>
+    <section class="questions-block">
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Сколько типов данных существует в JS?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Существует 8 типов данных: 7 приметивных и объекты.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Может ли последнее свойство объекта заканчиваться запятой?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да. Такая запятая называется "висячей запятой".</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Какаво преимущество квадратных скобок перед точечной нотацией?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">При помощи квадратных скобок можно обращаться к совйствам либо задавать свойства объекта, которые состоят из нескольких слов, а также обращаться через переменную.</p>
+                <pre>
+                    <code>
+let user_name = obj["user name"];
+
+const name = "user name";
+let user_name = obj[name];
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое вычисляемые свойства?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Вычисляемое свойство задается при помощи квадратных скобок, в которых непосредственно записывается выражение.</p>
+                <pre>
+                    <code>
+const prop = "name";
+
+const obj = {[prop]:"tema",
+             ['first_' + prop]: "labar",
+}
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Обратите внимание, что в вырожение может быть довольно сложным. Вы заметили висячую запятую?</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Если значение свойства объекта берется из переменной, которая по написанию совпадает с этим свойством, как можно сократить запись создания объекта?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Этот синтаксис доступен ES6!</p>
+                <pre>
+                    <code>
+let name = "tema";
+let age = 35;
+
+const obj = {
+    age,  //age:35
+    name  //name:"tema"
+}
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Может ли имя свойства объекта(ключ) совпадать с зарезервированными словами либо быть числом?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да. Стоит отметить, что ключами могут быть строки либо symbol, все другие типы данных преобразуются к строке.</p>
+                <pre>
+                    <code>
+const obj = {
+    0: 'start'  //"0":"start"
+}
+
+obj["0"]  
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Если свойство задается при помощи числа, то доступ к нему можно получить при помощи квадратных скобок.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что будет, если обратиться к несуществующему свойству объекта?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Будет возвращено значение underfind (а это один из 7 приметивных типов)</p>
+                <p class="qa-box__answer">Отличительная особенность js в том, что при этом не будет возникать ошибка.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужен оператор in?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">При помощи данного оператора можно проверить, есть ли определенной свойство в объекте.</p>
+                <pre>
+                    <code>
+"name" in obj;//имя
+
+prop in obj;  //переменная 
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Если ищем по конкретному имени, то нужно указать в ковычках. Также можно использывать переменную.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">При помощи какого цикла можно обойти объект?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <pre>
+                    <code>
+for(key in obj){
+    console.log(ojb[key]);
+}
+                    </code>
+                </pre>
+                <p class="qa-box__answer">При каждой итерации в переменную key записывается имя объекта. Вы обратили внимание, как при помощи квадратных скобок можно вывести значение свойства?</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как упорядочиваются свойства в объекте?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Целочисленные свойства упорядочиваются в порядке возрастания, остальные в зависимости от порядка создания.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно клонировать объект?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать в цикле либо используя метод Object.assign()</p>
+                <pre>
+                    <code>
+const clone = Object.assign({}, obj1, obj2);  
+                    </code>
+                </pre>
+                <p class="qa-box__answer">При помощи данного метода можно объединить несколько объектов в один. Следует помнить, что таким обарзом создается поверхностная копия. Если нужно сделать глубокую копию, то нужно проверять каждое свойство при помощи рекурсии, либо использовать библиотеку lodash</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Какой способ сокращенного написания методов в литерале объекта появился в ES6?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <pre>
+                    <code>
+const obj = {
+    sayHello(){
+        alert('Hello');
+    }
+}
+
+//Раньше нужно было так:
+const obj = {
+    sayHello: function(){
+        alert('Hello');
+    }
+}
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно получить доступ к объекту из метода?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать при помощи ключевого слова this</p>
+                <p class="qa-box__answer">Значение ключевого слова this не фиксированное, он зависит от контекста, в котором вызывается метод(функция). Любая функция может иметь ключевое слово this и какое значение получит это ключевое слово, зависит от места, в котором данная функция будет вызвана. Если вызвать функцию в глобальной области выдимости, то в строгом режиме будет получено значение undefined, а в нестрогом - глобальный объект window.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">На что ссылается ключевое слово this в стрелочной функции?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">В стрелочной функции ключевое слово this не имеет своего значения. Она берет его из внешней "нормальной" функции.</p>
+                <p class="qa-box__answer">Если стрелочная функция не вложена в "нормальный" метод объекта, а сама явялется методом объекта, то this в таком случае будет ссылаться глобальный объект в нестрогом режиме или undefind при строгом.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Какие основные два отличия функции-конструктора от обычной функции?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">1. Имя функции-конструктора начинается с большой буквы.</p>
+                <p class="qa-box__answer">2. Функция конструктор вызывается при помощи ключевого слова new.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает ключевое слово new при вызове функции?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Неявно создает новый пустой объект</p>
+                <p class="qa-box__answer">Присваевает новый объект ключевому слову this из функции.</p>
+                <p class="qa-box__answer">В результате испольнения кода возвращает this (то есть созданный объект)</p>
+                <pre>
+                    <code>
+let obj = new funciton(){};  //obj === {} 
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно клонировать объект?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать в цикле либо используя метод Object.assign()</p>
+                <pre>
+                    <code>
+const clone = Object.assign({}, obj1, obj2);  
+                    </code>
+                </pre>
+                <p class="qa-box__answer">При помощи данного метода можно объединить несколько объектов в один. Следует помнить, что таким обарзом создается поверхностная копия. Если нужно сделать глубокую копию, то нужно проверять каждое свойство при помощи рекурсии, либо использовать библиотеку lodash</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как работает return в функции-конструкторе?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Функция конструктор всегда возвращает this(объект) по умолчанию и указывать данное ключевое слово не нужно. Однако, если мы укажем, чтобы функция вернула другой объект, то будет возвращен именно он. Во всех других случаях будет возвращен this. несомтря на то, чтобы мы не прописали для возврата.</p>
+                <pre>
+                    <code>
+return 5+5  //все равно вернет this
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли вызвать функцию-конструктор без скобок?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да, если мы не передаем в нее аргументы. Однако, это считается плохой практикой.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужно "опциональная цепочка "?."?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Опциональная цепочка ?. — это безопасный способ доступа к свойствам вложенных объектов, даже если какое-либо из промежуточных свойств не существует. Эта возможность была добавлена в язык недавно, поэтому для старых версий браузеров потребуется полифил.</p>
+                <pre>
+                    <code>
+let value = user?.adderss?.street?.home?.room
+
+user?.actions?.sayHello?.();  //проверит, явяляется ли sayHello методом, и если да, то вызывает его. 
+let value = user?.adderss?.['user street'];
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Опчиональная цепочка ?. проверяет, явялется ли выражение слева от нее объектом. Елси да, то передает значение этого выражения дальще по цепочке, если же нет, то возвращает undefind. Ее можно исопльзовать с квадрантыми и круглыми скобками, чтобы получать свойство объекта или вызывать метод.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Какие два типа данных могут быть использованы в качестве ключей свойств объектов?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это могут быть либо строки, либо символы.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое символ и как его можно создать?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Символ это уникальный индетификатор. Создается он при помощи функции Symbol()</p>
+                <pre>
+                    <code>
+let id = Symbol();
+                    </code>
+                </pre>
+                <p class="qa-box__answer">При создании символа ему можно передать описание, но оно ни на что не влияет и используется больше для отладки. Символы гарантировано уникальны. Один символ никогда не равен другом, даже если имеют одинаковое описание.</p>
+                <p class="qa-box__answer">Символы неявно не преобразуются в строки, это можно сделать только явно при помощи метода .toString()/. Также символы имеют специальное свойство description, которое возвращает описание.</p>
+                <pre>
+                    <code>
+let id = Symbol('unicum id');
+id.description  // unicum id
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужны символы в объектах?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Поскольку символы всегда уникальны, при использовании сторонней библиотеки и необходимости добавить в объекты свои свойства, это предохраняет нас от того, что мы сможем перезатерт первоначальные свойства объекта.</p>
+                <pre>
+                    <code>
+let id = Symbol();
+let obj = {[id]: "number id"}
+alert(obj[id]);
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Обратите внимание, как в объектном лирерале объявляется вычисляемое свойство при помощи []. В цикле for...in свойства, которые имеют в качестве ключа символ, не перечилсяются. При клонировании при помощи функции Object.assign()такие свойства копируются в новый объект.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое глобальные символы?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это символы, которые содержаться в глобальном реестре. Они нужны для того, чтобы иметь к ним доступ из любого места приложения. Глобальные символы с одинаковым описанием равны между собой.</p>
+                <pre>
+                    <code>
+let id = Symbo.for(id);
+                    </code>
+                </pre>
+                <p class="qa-box__answer">При помощи Symbo.for() можно получить символ из глобального реестра, если он там есть. Если же его там нет, то такой символ будет создан. Глобальные символы доступны везде в коде.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно получить имя символа?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <pre>
+                    <code>
+const id = Symbol.key('name for global symbol');
+let nameSymbol = Symbol.keyFor(id);  //name for global symbol
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Стоит помнить, что данный метод работает только для глобальных символов. Для обычных, как мы помним, есть свойство discription.</p>
+                <p class="qa-box__answer">Существует множество системных символов, которые используются внутри JS. Их можно использовать для настройки различных аспектов поведения объектов. Например для настройки правила, по которому объект будет преобразовываться к примитиву.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как объект преобразуется к примитивному типу?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Все зависит от того, в каком контексте производится преобразование, а именно, что нужно получить: логическое значение, стоку или число. Если мы выполняем матиматическую опирацию, то преобразовать нужно к число(хинт number), если логическую, то к логическому значению (хинт boolean)</p>
+                <p class="qa-box__answer">Для объектов можно выделить три хинта: "string", "number", "default".</p>
+                <p class="qa-box__answer">В процессе приобразования к примитиву, движок пытается вызвать следующие методы:</p>
+                <p class="qa-box__answer">ojb[Symbol.toPrimitive](hint) - если такой метод существует, и передает ему хинт. Обратите внимание, что ключом является символ (в данном случае системный символ)</p>
+                <p class="qa-box__answer">hint === 'string' - сначало вызывается .toString(), если такого нет, то .valueOf()</p>
+                <p class="qa-box__answer">hint === 'number' || 'default' - сначало вызывается .valueOf(), если такого нет, то .toString()</p>
+                <pre>
+                    <code>
+obj[Symbol.toPrimitive] = function(hint){
+    if(hint === "string"){ return "String"}
+    if(hint === "number" || hint === "default"){ return "Number"}
+}
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Методы должны возвращать примитивный тип, а не объект. Методы toString() и valueOf() это устаревшие способы преобразований и были реализованы тогда, когда еще не было символов. На практике довольно часто достаточно реализовать только obj.toString() как «универсальный» метод для всех типов преобразований, возвращающий «читаемое» представление объекта, достаточное для логирования или отладки</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

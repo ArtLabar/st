@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../js/all.min.js"></script>
+</head>
+<body>
+    <div class="questions-block">
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно инициализировать репозиторий?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать при помощи команды:</p>
+                <pre>
+                    <code>
+git init
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Эта команда создаст в текущей директории поддиректорию .git, которая содержит структурные файлы.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно инициализировать репозиторий?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать при помощи команды:</p>
+                <pre>
+                    <code>
+                        git add .
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">При помощи какой команды можно создать коммит?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать при помощи команды:</p>
+                <pre>
+                    <code>
+                        git commit -m "first commit"
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Комментарий пишется в ковычках.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно клонировать удаленный репозиторий?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать при помощи команды:</p>
+                <pre>
+                    <code>
+                        git clone https://github.com/libgit2/libgit2
+                    </code>
+                </pre>
+                <p class="qa-box__answer">При этом копируется не только рабочая версия проекта, а все репозиторий полностью. В этом отличие git от многих другий систем. Если нужно задать свое имя директорию, то его нужно указать в данной команде после url (указывается без ковычек)</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">При помощи какой команды можно узнать статус?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать при помощи команды:</p>
+                <pre>
+                    <code>
+                        git status
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Эта команда покажет, имеются ли измененные, неотслеживаемые и неиндексируемые файлы.</p>
+                <pre>
+                    <code>
+                        git status -s
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Так можно посмотреть статус в более коротком виде.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно сделать, чтобы определенные файлы не отображались в списке неотслеживаемых файлов? </h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Для этих целей существует специальный файл .gitignore. Указываются данные файлы при помощи glob-шаблоно (упрощенной версии регулярных выражений).</p>
+                
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">При помощи какой команды можно посмотерть конкретно поменялось, а не только какие файлы были изменены?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">При помощи команды:</p>
+                <pre>
+                    <code>
+                        git diff
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Эта команда позволяет получить ответ  на два вопроса: что вы изменили, но ещё не проиндексировали, и что вы проиндексировали и собираетесь включить в коммит. Важно помнить, что вызов команды без аргументов позволит увидить изменения которые не проиндексированы. Важно отметить, что git diff сама по себе не показывает все изменения сделанные с последнего коммита — только те, что ещё не проиндексированы. Если вы хотите посмотреть, что вы проиндексировали и что войдёт в следующий коммит, вы можете выполнить git diff --staged.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Чем отличается команда git commit от команды git commit -m?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Команда git commit откроет выбранный вами текстовый редактор, при помощи которого можно прописать комментарии к коммиту.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">При помощи какйо одной команды можно одновременно проиндексировать все измененные файлы и создать новый коммит?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать при помощи команды:</p>
+                <pre>
+                    <code>
+                        git commit -a -m "information"
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как нужно удалять файлы в репозитории?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать при помощи команды:</p>
+                <pre>
+                    <code>
+                        git rm
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Если вы просто удалите файл из своего рабочего каталога, он будет показан в секции “Changes not staged for commit” (измененные, но не проиндексированные) вывода команды git status. Если вы выполните команду git rm, удаление файла попадёт в индекс. После следующего коммита файл исчезнет и больше не будет отслеживаться. Если вы изменили файл и уже проиндексировали его, вы должны использовать принудительное удаление с помощью параметра -f.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">При помощи какой команды можно удалить файл из индекса, оставив его при этом в рабочем каталоге?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать при помощи команды:</p>
+                <pre>
+                    <code>
+                        git rm --cached
+                    </code>
+                </pre>
+                <p class="qa-box__answer">В команду git rm можно передавать файлы, каталоги или шаблоны.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">При помощи какой команды можно переименовать либо переместить файл в git?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать при помощи команды:</p>
+                <pre>
+                    <code>
+                        git mv
+                    </code>
+                </pre>
+                <p class="qa-box__answer">При помощи данной команды можно как переименовать файл, так и переместить его. Для перемещения нужно прописывать полный путь первоначального местоположения файла на полный путь места, куда нужно его переместить:</p>
+                <pre>
+                    <code>
+                        git mv 'old place/file.txt' 'new place/file.txt'
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно посмотреть историю коммитов?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать при помощи команды:</p>
+                <pre>
+                    <code>
+                        git log
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Команда git log имеет очень большое количество опций для поиска коммитов по разным критериям.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно инициализировать репозиторий?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Какой аргумент команды git log показывает изменения, внесенные в каждый коммит? Как можно ограничить число выводимых коммитов?</p>
+                <pre>
+                    <code>
+                        git log -p -4
+                    </code>
+                </pre>
+                <p class="qa-box__answer">-p это то же самое, что и --pathc. Для того, чтобы посмотреть сокращенную статистику, нужно использывать опцию --stat</p>
+                <pre>
+                    <code>
+                        git log --stat
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Расскажите, для чего нужна опция --pretty? Как ею пользываться?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Эта опция меняет формат вывода. Существует несколько встроенных вариантов отображения. Опция oneline выводит каждый коммит в одну строку, что может быть очень удобным если вы просматриваете большое количество коммитов. К тому же, опции short, full и fuller делают вывод приблизительно в том же формате, но с меньшим или большим количеством информации соответственно</p>
+                <pre>
+                    <code>
+                        git --pretty=online
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Наиболее интересной опцией является format, которая позволяет указать формат для вывода информации.</p>
+                <pre>
+                    <code>
+                        git log --pretty=format:"%h - %an, %ar : %s"
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужно опция --graph? Как ею пользываться?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">С этой опцией вы сможете увидеть небольшой граф в формате ASCII, который показывает текущую ветку и историю слияний:</p>
+                <pre>
+                    <code>
+                        git log --graph
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делают опции --since и --until команды git log?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это опции для ограничения вывода по времени.</p>
+                <pre>
+                    <code>
+                        git log --since=2.weeks
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Это команда работает с большим количеством форматов — вы можете указать определенную дату вида "2008-01-15" или же относительную дату, например "2 years 1 day 3 minutes ago".</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как найти коммиты по имени автора либо по ключевому слову в комментарии к коммиту?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это можно сделать при помощи опций --author и --grep соответственно:</p>
+                <pre>
+                    <code>
+                        git log --author=gitster
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает опция -S?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Данная опция принимает аргумент в виде строки и показывает только те коммиты, в которых изменение в коде повлекло за собой добавление или удаление этой строки. Например, если вы хотите найти последний коммит, который добавил или удалил вызов определенной функции, вы можете запустить команду:</p>
+                <pre>
+                    <code>
+                        git log -S function_name
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
