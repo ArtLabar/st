@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../../js/all.min.js"></script>
+</head>
+<body>
+    <section class="questions-block">
+        <div class="questions-block">
+            <div class="qa-box">
+                <div class="qa-box__question-box">
+                    <h2 class="qa-box__question">Чем отличаются stateful-компоненты от stateless-компонентов?</h2>
+                </div>
+                <div class="qa-box__answer-box">
+                    <p class="qa-box__answer">Первые имеют состояние (классовые компоненты) в отличии от вторых (функциональных).</p>
+                </div>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Если задача компонента только в отрисовке UI, какого вида компонент лучше использовать и почему?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Функциональный, так как он проще в понимании и тестировании.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Влияет ли на производительность выбор вида компонента - классового или функционального?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Нет, с версии Реакт 16 разницы нет.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли инициализировать state не внутри метода constructor?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да. Если первоначальное состояните на зависит от передаваемых пропсов, то можно его инициализировать как обычное свойство объекта.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что происходит, когда меняется одно или более свойств состояния state (либо одно или более свойств передаваемого объекта props)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Вызывается повторно метод компонента render() и происходит перерисовка компонента.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как надежно привязать метод к объекту при помощи нового синтаксиса? Как это делалось раньше в компонентах-классах.</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Если значением свойства является стрелочная функция, то она навсегда привяжется к объекту, в котором была создана. Раньше методы привязывались при помощи метода функции bind в методе класса constructor.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли менять state напрямую?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Нет, только при помощи метода setState.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что происходит, когда метод setState() принимает объект?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Он обновляет state в соответствии с этим объектом. Причем обновляются только те свойства, которые указаны в переданном объекте.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Может ли метод setState принимать функцию? Какие аргументы она принимает?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да, может. Она принимает два рагумента prevState и prevProps - предыдущее состояние и предыдущий объект пропсов соответственно.  Вернуть должна объект для обновления state.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Какая библиотека позволяет контролировать типы данных передаваемых пропсов?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это библиотека prop-types. Ее нужно устанавливать дополнительно.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Под каким именем обычно импортируется модуль из библиотеки prop-types?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Под именем PropTypes (но это имя может быть любым).</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Какое свойство используется для того, чтобы запустить проверку пропсов?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это статическое свойство компонента propTypes, которое ссылается на объект с настройками.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Возможна ли проверка типов пропсов в функциональных компонентах?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box">
+                <div class="qa-box__question-box">
+                    <h2 class="qa-box__question">Как можно задать проверку пропа на соответствие определенном вуди данных?</h2>
+                </div>
+                <div class="qa-box__answer-box">
+                    <p class="qa-box__answer">В объекте настроек в качестве ключа нужно указать имя пропа, а в качестве свойства соответствующий валидатор из библиотеки prop-types.</p>
+                    <pre>
+                        <code>
+App.propTypes = {
+    count: PropTypes.number
+}
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Перечислите, по каким типам данных, которые есть в ES, можно валидировать пропсы?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">array, bool, func, number, object, string, symbol</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает валидатор PropTypes.node?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Соответствует ли проп типу данных, которые могут быть отрендеренные. Это числа, строки, элементы фрагменты или массивы их содержащие.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делаю валидаторы arrayOf() и objectOf()? Какой аргумент они принимают?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Данные валидаторы проверяют, соответствует ли каждый элемент массива, передаваемого в пропе, или каждое свойство объекта, передаваемого в пропе, определенному типу данных из ES. Данные методы принимают валидатор нужно типа данных.</p>
+                <pre>
+                    <code>
+App.propTypes = {
+    arr: PropTypes.arrayOf(PropTypes.number),
+    obj: PropTypes.objectOf(PropTypes.func)
+}
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает валидатор PropTypes.element?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Проверяет, соответствует ли проп реакт-элементу.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает валидатор PropTypes.instanceOf() и какой аргумент принимает?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Проверяет, является ли переданный проп экземпляром класса. Имя класс передается в аргументе (не строка!).</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает валидатор PropTypes.oneOf()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Проверяет, соответствует ли значение пропа одному из элементов массива, который передается в качестве аргумента валидатору.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает валидатор PropTypes.oneTypesOf()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Проверяет, соответствует ли проп одному из типу данных, перечисленных в массиве, который передается в качестве аргумента валидатору. В массиве элементы соответствуют валидаторам типов. </p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает валидатор PropTypes.shape()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Проверяет, соответствует ли указанное свойство объекта, который передается в видео пропа, определенному типу данных.</p>
+                <pre>
+                    <code>
+App.propTypes = {
+    obj: PropTypes.shape({
+        color: PropTypes.string,
+        fontSize: PropTypes.number
+    })
+}
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли при использовании библиотеки prop-types указать, что определенный проп должен быть обязательным?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да, для этого нужно добавить свойство isRequired.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли создать свой собственный валидатор?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да. Смотреть документацию.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">При помощи какого статического свойства компонента можно добавить объект с настройками со значениями по умолчанию для пропсов?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">При помощи свойства defaultProps.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно добавить валидацию пропов или указания для них значений по умолчанию в функциональных компонентах?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Объекту функции нужно назначить статическое свойство propTypes или defaultProps и далее все как в классовых компонентах.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как выглядит объект с настройками для указания значений по умолчанию для пропосв?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">В нем ключ - это имя пропса, свойство - это значение по умолчанию данного пропса. </p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Являются ли события в React кроссбраузерными?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое условный рендеринг?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это отрисовка различной разметки в зависимости от определенных условий.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужен компонент Fragment?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Он оборачивает несколько react-элементов для того, чтобы можно было их отрендерить без необходимость оборачивать одним корневым элементом. </p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли использовать стили инлайново?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да. Для этого нужно передать свойству style объект с настройками css.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Чтоб импортировать в React файл со стилеми, нужны ли какие-либо дополнительные настройки.</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Нет. Нужно сделать только импорт файла.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

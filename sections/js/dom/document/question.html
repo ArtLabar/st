@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../../../js/all.min.js"></script>
+</head>
+<body>
+    <section class="questions-block">
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно получить доступ к элементу document, html, body?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">document, document.documentElement и document.body соответственно.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">На что ссылаются такие свойства DOM-узла, как parentNode, previousSibling, nextSibling, childNodes, firstChild, lastChild?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">На родительский элемент, предыдущего соседа, следующего соседа, псевдомассив с дочерними элементами, первый дочерний элемент и последний дочерний элемент соответственно. В данной системе навигации учитываются и текстовые узлы.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Являются ли DOM-коллекции живыми?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Какие существуют свойства элемента для навигации только по узлам-элементам?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">parentElement, previousElementSibling, nextElementSibling, children, firstElementChildren, lastElementChildren.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Существуют ли дополнительные свойства у таблицы для навигации?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли вызвать метод getElementById() на любом элементе?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Нет. Это метод узла document.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Почему нельзя использовать переменную, соответствующую id элемента для поиска этого элемента.</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это плохая практика, к тому же, данная переменная может быть перезатерта из глобального лексического окружения.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли вызвать метод querySelectorAll() на любом элементе?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Чем отличается querySelectorAll() от querySelector()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Первый возвращает коллекцию элементов, второй первый элемент из коллекции.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает метод элемента marches()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Проверяет, соответствует ли элемент определенному селектору CSS.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает метод элемента closest()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Находит первый элемент, от текущего и по цепочке предков, который соответствует селектору CSS.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что показывает свойство узла nodeType?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Номер, который соответствует определенному типу узла. Например: 1 - элемент, 3 - текстовый узел, 9 - узел document.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что показывают свойства tagName и nodeType? В чем разница между ними?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Показывают тип узла. Свойство tagName есть только у элементов и покажет имя тега в верхнем регистре.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает свойство innerHTML?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Оно позволяет либо получить содержимое элемента, либо перезаписать его.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает свойство outerHTML?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Оно позволяет получить разметку элемента целиком (включая внешние теги) либо заменить его.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делают свойства текстовых узлов nodeValue и data и в чем разница между ними?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Они почти идентичны в использовании, разница только лишь в спецификации. Они позволяют получить текстовое содержимое текстового узла. Это аналог innerHTML как у элементов.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает свойство textContent? Какое значение ему можно присвоить? </h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Позволяет получить текстовое содержимое элемента без тегов. Если ему присвоить строку, в которой будут содержаться теги, то js экранирует их и вставить в элемент как строки.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что показывает свойство элемента hidden?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Оно показывает, виден или нет элемент в данный момент. Можно присвоить логические значения true или false.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Становятся ли стандартные атрибуты html-элемента свойствами соответствующего объекта в DOM?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да. Стандартные атрибуте это те, которые есть у html-элемента по спецификации.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Расскажите, что делают следующие методы элементов и какие аргументы они принимают: .hasAttribute(), .getAttribute(), setAttribute(), removeAttribute()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Проверяет, получает, устанавливает и удаляет атрибут соответственно. Эти методы позволяют работать с нестандартными свойствами в том числе.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что позволяет получить свойство элемента attributes?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Он позволяет получить коллекцию объектов, каждый из которых имеет свойства name и value (каждый объект соответствует одному атрибуту элемента).</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Если изменить стандартный атрибут через свойство узла-элемента. Получить ли новое значение атрибута вызов getAttribute()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да. Изменения происходят синхронно.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Если мы меняем значение стандартного атрибута через setAttribute(), можно ли получить новое значение данного атрибута через свойство узла-элемента?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да. Изменения происходят синхронно.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли изменить атрибут value изменяя свойство элемента? А изменится ли свойство, если изменить атрибут value?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Изменение атрибута обновляет свойство, но изменения свойства не изменяет атрибут.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что мы получим, если захотим получить значение атрибута style как свойство узла и вызвав метод getAttribute()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Через свойство получим объект, через метод получим строку со стилями.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Если нужно получить значение атрибута href. Что вернет DOM-свойство и что вернет вызов метода getAttribute()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">DOM-свойство вернет полный адрес url, метод именно то, что записано в html-документе. </p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как получить доступ к нестандартному элементу, начинающиеся с приставки data-?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">При помощи свойства элемента dataset, которое ссылается на объект со всеми такими атрибутами. Получить конкретный атрибут из данного объекта можно при помощи имени, которое указывается в самом атрибуте после приставки. Если в имени есть дефис, то используется верблюжья нотация.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+<div class="qa-box">
+    <div class="qa-box__question-box">
+        <h2 class="qa-box__question">Объясните, что такое "частичное применение"?</h2>
+    </div>
+    <div class="qa-box__answer-box">
+        <p class="qa-box__answer">При помощи встроенного метода .bind() можно привязать не только this, но и аргументы.</p>
+    </div>
+</div>
+
+<div class="qa-box">
+    <div class="qa-box__question-box">
+        <h2 class="qa-box__question">Объясните, что такое "частичное применение"?</h2>
+    </div>
+    <div class="qa-box__answer-box">
+        <p class="qa-box__answer">При помощи встроенного метода .bind() можно привязать не только this, но и аргументы.</p>
+        <pre>
+            <code>
+function mul(a, b) {
+return a * b;
+}
+
+let double = mul.bind(null, 2);
+
+double(3) // = mul(2, 3) = 6
+double(4) // = mul(2, 4) = 8
+double(5) // = mul(2, 5) = 10
+            </code>
+        </pre>
+        <p class="qa-box__answer">В качестве this можно передать любой объект, но как правило это null.</p>
+    </div>
+</div>

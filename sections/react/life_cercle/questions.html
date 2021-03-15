@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../../js/all.min.js"></script>
+</head>
+<body>
+    <section class="questions-block"> 
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает метод жизненного цикла componentDidMount()</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Этот метод вызывается автоматически сразу после монтирования компонента в DOM.</p>
+            </div>
+        </div> 
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Когда вызывается метод жизненного цикла componentDidUpdate(prevProps, prevState, snapshot)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод вызывается сразу после обновления компонента. При первом монтировании не вызывается.</p>
+            </div>
+        </div> 
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Когда вызывается метод жизненного цикла componentWillUnmount(prevProps, prevState, snapshot)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод вызывается перед размонтированием и удалением компонента.</p>
+            </div>
+        </div> 
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Когда вызывается componentDidCatch(err, info)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Метод вызывается когда в компоненте или любом из его предков возникла ошибка. err - это перехваченная ошибка, info, объект, где в свойстве componentStack содержится информация о компоненте, в котором возникла ошибка.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужны рефы?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Они позволяют получить доступ к DOM-узлам и React-элементам, созданным в рендер-методе.</p>
+            </div>
+        </div>  
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает React.createRef()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Создает объект реф. Он должен быть присвоен атрибуту ref в нужном DOM-элементе или React-компоненте.</p>
+                <pre>
+                    <code>
+class MyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.myRef = React.createRef();
+    }
+
+    render() {
+        return <div ref={this.myRef}></div>;
+    }
+}
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Через какое свойство рефа можно получить нужный узел?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Когда реф передаётся элементу в методе render, ссылка на данный узел доступна через свойство рефа current.</p>
+                <pre>
+                    <code>
+const node = this.myRef.current;
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Почему атрибут ref можно использовать в классовых компонентах и нельзя в функциональных?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Когда ref используется с классовыми компонентами, свойство current получает экземпляр смонтированного компонента. А для функциональных компонентов экземпляр не создается.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">В какой момент происходит обновление свойства current рефа?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Обновление происходит перед вызовом методов componentDidMount() и componentDidUpdate().</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно вызвать метод дочернего компонента, имя на него ссылку через реф?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Поскольку компонент это объект то метод его можно вызвать так же, как и в любом другом объекте: obj.method()</p>
+                <pre>
+                    <code>
+class AutoFocusTextInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.textInput = React.createRef();
+    }
+    
+    componentDidMount() {
+        this.textInput.current.focusTextInput();
+    }
+    
+    render() {
+        return (
+        <CustomTextInput ref={this.textInput} />
+        );
+    }
+}
+                    </code>
+                </pre>
+                <p class="qa-box__answer">При условии, что дочерний компонент CustomTextInput имеет метод focusTextInput()</p>
+            </div>
+        </div>
+
+           
+    </section>
+</body>
+</html>
+
+
+<div class="qa-box">
+    <div class="qa-box__question-box">
+        <h2 class="qa-box__question">Что делает метод жизненного цикла componentDidMount()</h2>
+    </div>
+    <div class="qa-box__answer-box">
+        <p class="qa-box__answer">Этот метод вызывается автоматически сразу после монтирования компонента в DOM.</p>
+    </div>
+</div>
+
+
+<div class="qa-box">
+    <div class="qa-box__question-box">
+        <h2 class="qa-box__question">Какое значение будет присвоено аргументу функции, если при вызовы ему не присвоить значение?</h2>
+    </div>
+    <div class="qa-box__answer-box">
+        <p class="qa-box__answer">В таком случает в теле функции аргументу будет присвоено значение undefind.</p>
+        <pre>
+            <code>
+function showArgument(x){
+return x;
+}
+
+showArgument() // undefind
+            </code>
+        </pre>
+        <p class="qa-box__answer">Обратите внимание, что в вырожение может быть довольно сложным. Вы заметили висячую запятую?</p>
+    </div>
+</div>
+
