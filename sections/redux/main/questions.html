@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../../js/all.min.js"></script>
+</head>
+<body>
+    <section class="questions-block">
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли сказать, что управление состоянием и данными является одной из самых главных задач разработчика?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да, так и есть.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Объясните, что такое “property drill” в реакт?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это передача вниз по цепочке свойств через несколько уровней промежуточных компонентов и обновление состояния при помощи подъема события вверх по этой же цепочке.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Можно ли сказать, что разделение логики и рендеринга это хорошая практика.</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Да.</p>
+            </div>
+        </div>
+        
+    </section>
+</body>
+</html>
+
+
+<div class="qa-box">
+    <div class="qa-box__question-box">
+        <h2 class="qa-box__question">Что делает метод жизненного цикла componentDidMount()</h2>
+    </div>
+    <div class="qa-box__answer-box">
+        <p class="qa-box__answer">Этот метод вызывается автоматически сразу после монтирования компонента в DOM.</p>
+    </div>
+</div>
+
+
+<div class="qa-box">
+    <div class="qa-box__question-box">
+        <h2 class="qa-box__question">Какое значение будет присвоено аргументу функции, если при вызовы ему не присвоить значение?</h2>
+    </div>
+    <div class="qa-box__answer-box">
+        <p class="qa-box__answer">В таком случает в теле функции аргументу будет присвоено значение undefind.</p>
+        <pre>
+            <code>
+function showArgument(x){
+return x;
+}
+
+showArgument() // undefind
+            </code>
+        </pre>
+        <p class="qa-box__answer">Обратите внимание, что в вырожение может быть довольно сложным. Вы заметили висячую запятую?</p>
+    </div>
+</div>

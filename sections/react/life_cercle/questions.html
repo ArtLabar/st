@@ -132,6 +132,86 @@ class AutoFocusTextInput extends React.Component {
                 <p class="qa-box__answer">При условии, что дочерний компонент CustomTextInput имеет метод focusTextInput()</p>
             </div>
         </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что такое компонент высшего порядка?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">компонент высшего порядка — это функция, которая принимает компонент и возвращает новый компонент.</p>
+                <pre>
+                    <code>
+const EnhancedComponent = higherOrderComponent(WrappedComponent);
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего нужен контекст?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Контекст нужен для того, чтобы передавать данные целевому компоненту минуя промежуточные уровни.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Опишите синтаксис создания контекста. Каким типом данных является созданный контекст?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <pre>
+                    <code>
+const MyContext = React.createContext(defaultValue);
+                    </code>
+                </pre>
+                <p class="qa-box__answer">MyContext является объектом контекста.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Чем является MyContext.Provider? Что он делает?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это компонент. Он дает возможность дочерним компонентам подписываться на изменение контекста.</p>
+                <pre>
+                    <code>
+<MyContext.Provider value={/* некоторое значение */}>
+    /*дочерние компоненты, которые получают возможность получить данные из контекста*/
+</MyContext.Provider>
+                    </code>
+                </pre>
+                <p class="qa-box__answer">value - это именно то значние, которое может быть передано дочерним компанентам.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как классовый компонент может получить доступ к данным из контекста?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Необходимо статическому свойству класса contextType присвоить значение объекта контекста. После этого, данные контекста будут доступны как this.context.</p>
+                <pre>
+                    <code>
+MyClass.contextType = MyContext
+                    </code>
+                </pre>
+                <p class="qa-box__answer">В новом синтаксисе внутри класса можно использовать ключевое слово static.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Если меняются данные контекста, что происходит с компонентами, подписанными на контекс? </h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Они перерендываются.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно передать контекст дочернему функциональному компоненту?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Передать можно при помощи компонента MyContext.Consumer, который в качестве дочернего элемента принимает функцию. Она в свою очередь принимает значение контекста и возвращает компонент. </p>
+            </div>
+        </div>
 
            
     </section>

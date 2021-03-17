@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../../js/all.min.js"></script>
+</head>
+<body>
+    <section class="questions-block">
+        <h1>Главные поетрны по redux.</h1>
+        <ul class="list-point">
+            <li class="item-point">
+                <p class="item-point__text">Redux решает проблему управления состоянием приложения.</p>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">При помощи redux мы можем хранить состояние в глобальном state, а функция reducer обновлять этот state в ответ на действия action.</p>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">Для работы в react с redux нужно установить две библиотеки: redux и react-redux.</p>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">reducer - это обычная функция, которая принимает первоначальный state, и объект-событие. Есть два условия: если событие не распознано, то нужно вернуть первоначальные state; если переданный state равен undefined, то нужно проинициализировать и вернуть state (initial). </p>
+                <pre>
+                    <code>
+const reduser = (state={}, action) => {
+    switch(action.type){
+        case "TYPE_ONE": return {...state, x: 1}
+        case "TYPE_TWO": return {...state, x: 2}
+        default: return state;
+    }
+}
+
+let state = reducer({}, {type: "TYPE_ONE"}); // {x: 1}
+                    </code>
+                </pre>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">store это главный объект, который связывает работу reducer и state. Создать его можно при помощи метода createStore(reducer).</p>
+                <pre>
+                    <code>
+import {createStore} from ‘redux’;
+
+const store = createStore(reducer);                        
+                    </code>
+                </pre>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">Для того, чтобы запустить событие, а следовательно запустить reducer и как следствие, возможно изменить глобальный state, нужно вызвать store.dispatch(action).</p>
+                <pre>
+                    <code>
+let action = {type: “ONE_ACTION”}
+
+store.dispatch(action);                                              
+                    </code>
+                </pre>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">Для того, чтобы подписаться на изменение глобального state, нужно вызвать store.subscribe(). Метод принимает колбек-функцию, которая вызывается всякий раз после изменения глобального состояния.</p>
+                <pre>
+                    <code> 
+store.subscribe(()=>{})                  
+                    </code>
+                </pre>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">Для того, чтобы получить глобальный state, нужно вызывать store.getState():</p>
+                <pre>
+                    <code>
+let stateRedux = store.getState();                  
+                    </code>
+                </pre>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">Чистая функция возвращает значение, которое зависит только от принятых аргументов и не имеет побочных эффектов. reducer должна быть чистой функцией. </p>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">В объекте action, который передается функции reducer, может кроме свойства type быть и другие свойства. Так мы можем передать reducer другие данные где они могут быть получены и обработаны. Очень часто, такое свойство называется payload: </p>
+                <pre>
+                    <code> 
+reducer = (state = {name: null, age: null, data: null}, action) => {
+    switch(action.type){
+    case “ANY_ACTION”:
+        return {
+            name: action.name, 
+            age: action.age, 
+            data: action.payload
+        }
+    default: 
+        reutrn state;
+    }
+}
+
+let action = {type: “ANY_ACTION”, payload: 5, name: “Tema”, age: 35}
+
+store.dispatch(action);
+
+store.getState(); // {name: "Tema", age: 35, data: 5}                                          
+                    </code>
+                </pre>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">action - это механизм общения приложения с состоянием, именно они взаимодействия с store меняют глобальное состояние. Часто, для того, чтобы автоматизировать создание объектов action пишутся специальные функции - Action Creator:</p>
+                <pre>
+                    <code>  
+const anyAction = (payload, name, age) => {
+    return {type: "ANE_ACTION",
+            payload,
+            name,
+            age}
+}   
+
+store.despatch(anyAction(5, "Tema", 35));
+                    </code>
+                </pre>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">Хорошей практикой является вынести функцию reducer и Actions Creator в отдельные файлы или папки.</p>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">Метод dispatch() навсегда привязан к объекту store в котором он был создан. Отдельно его привязывать не нужно, поэтому его можно деструктурировать и использовать без связки с объектом: </p>
+                <pre>
+                    <code> 
+let { despatch } = store;
+
+despatch(action); // прекрасно отарботает
+                    </code>
+                </pre>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">Для того, чтобы связать вызов функции Action Creatore и метода dispatch, в библиотеке redux есть функция bindActionCreators(actions, dispatch). Она возвращает новую функцию, которая передает вызов action в метод dispatch. При этом, все аргументы, которые мы ей передаем при вызове, будут переданы в Action Creator. Если в метод первым аргументом передадим объект с несколькими Action Creators, где ключ - это название функции, а значение - сама функция, то метод вернет объект связанных функций, ключи которых будут полностью совпадать с ключами предельного объекта actions.</p>
+                <pre>
+                    <code>  
+let { createStore, bindActionCreators } from 'redux';
+let { dispatch } = store;      
+let { oneAction, twoAction } from './actions.js';
+
+let anyAction = bindActionCreators(oneAction, dispatch);
+
+anyAction("hello"); //  тоже самое, что dispatch(oneAction("hello"));
+
+let  bindActions = bindActionCreators({one: oneAction, two: twoAction}, dispatch); 
+
+bindActions.two("good bay");  // тоже самое, что dispatch(twoAction("good bay"));
+                    </code>
+                </pre>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">Для того, чтобы компоненту передать глобальное состояние, а также связанные функции вызова событий (actions), нужно экспортировать функцию connect() из библиотеки react-redux и передать в нее соответствующие настройки. Данная функция является функцией высшего порядка, которая возвращает компонент высшего порядка.</p>
+                <pre>
+                    <code>  
+import { connect } from 'react-redux';
+
+let NewComponent = connect(mapStateToProps, mapDispatchToProps)(OldComponent);
+                    </code>
+                </pre>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">mapStateToProps - это функция, которая принимает колбек, которому автоматически в качестве аргумента передается глобальный state и возвращает объект со свойствами, который будут переданы как пропсы целевому компоненту</p>
+                <pre>
+                    <code>  
+const mapStateToProps = (state) => ({name: state.name, age: state.age})                 
+                    </code>
+                </pre>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">mapDispatchToProps - функция, которая автоматически принимает функцию dispatch в аргументе, и возвращает объект со значениями, которые будут переданы в виде пропсов целевому компоненту. В теле функции Actions Creators связываются с функцией dispatch, результат чего и возвращается из функции. </p>
+                <pre>
+                    <code> 
+import { bindActionCreators } from 'redux';
+import * as actions from './actions.js'
+
+const mapDispatchToProps = (dispatch) => {
+    let { oneAction, twoAction } = bindActionCreator(actions, dispatch)
+
+    return { oneAction, twoAction }
+}                 
+                    </code>
+                </pre>
+            </li>
+            <li class="item-point">
+                <p class="item-point__text">Если мы хотим передать объект с Action Creator, то его можно сразу передавать вторым аргументом функции connect. Связывание произойдет автоматически. Целевому компоненту все функции будут переданы в виде пропсов с такими же названиями, как и в передаваемом объекте. </p>
+                <pre>
+                    <code> 
+let NewComponent = connect(mapStateToProps, actions)(OldComponent);                  
+                    </code>
+                </pre>
+            </li>
+        </ul>
+
+    </section>
+</body>
+</html>
