@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/style.min.css" />
+    <title>Questions and answers</title>
+    <script defer src="../../../../js/all.min.js"></script>
+</head>
+<body>
+    <section class="questions-block">
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что означают свойства элемента offsetParent, offsetLeft, offsetTop?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">offsetParent - это родительский элемент, который используется браузером для вычисления координат текущего элемента.</p>
+                <p class="qa-box__answer">offsetTop, offsetLeft - расстояния сверху и слева от родительского элемента. Это внешние метрики элемента.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">В каких случаях свойство offsetParent будет иметь значение null?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Если элемент скрытый или если его нет в документе, для элементов body и html, для элементов с свойством position: fixed.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Значение в каком измерении и формати возвращают свойства-метрики?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Значения в пикселях в числовом формате. </p>
+                <pre>
+                    <code>
+elem.offsetTop; //  300
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что показывают свойства offsetHeight и offsetWidth?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Высоту и ширину элемента. Для неотображаемых элементов эти значения равны 0. </p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">то показывают свойства clientTop и clientWidth?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Это отступ от левой внешней и внутренней границы и отступ верхней внешней и внутренней границы. Они совпадают с шириной border, но могут включать в себя полосу прокрутки (scrollbar).</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что показывают свойства scrollWidth и scrollHeight?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Показывают полную фактическую ширину и высоту элемента с учетом того, что уже прокручено и может быть прокручено. scrollWidth больше clientWidth тогда, когда ширина контента больше области просмотра элемента.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что показывают свойства scrollTop и scrollLeft? Можно ли изменять эти свойства?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Показывают, на сколько элемент был прокручен вверх и влево соответственно. Эти свойства можно изменять.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Почему лучше использовать метрики вместо getComputedStyle()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Потому что иногда width может включать box-padding, box-border. Кроме того можно получить установленное значение auto, которое не покажет реальный размер. А также разные браузеры по разному учитывают полосы прокрутки.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Какие значения покажут window.innerWidth и window.innerHeight?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Ширину и высоту браузера с учетом полос прокрутки (если они есть). Если нужно получить именно видимую область, лучше использовать document.documentElement.clientWidth/Height.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно получить текущую прокрутку документа в окне браузера?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <pre>
+                    <code>
+window.pageYOffset;
+window.pageXOffset;                        
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно прокрутить документ в окне браузера? </h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <pre>
+                    <code>
+window.scrollBy(Y, X)
+window.scrollTo(pageY, pageX)                        
+                    </code>
+                </pre>
+                <p class="qa-box__answer">Первое свойство прокручивает документ на указанное значение, а второе свойство пытается установить точку с указанными координатам максимально возможно к верхнему левому углу.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно запретить прокрутку документа?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <pre>
+                    <code>
+document.body.style.overflow = “hidden”
+
+document.body.style.overflow = “”                        
+                    </code>
+                </pre>
+                <p class="qa-box__answer">При запрете прокрутки исчезают и полосы прокрутки</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Для чего элементу нужно свойство scrollIntoView()? Какой аргумент оно принимает? </h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Свойство помещает элемент в видимую область окна браузера. Если передать true, то будет тянуть верхнюю левую точку элемента в верхний левый угол экрана, если передать false, то нижнюю границу элемента к нижней границе экрана. </p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Относительно чего есть две системы координат?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Относительно окна браузера и относительно документа.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно получить координаты элемента?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <pre>
+                    <code>
+elem.getBoundingClientRect();
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Какие значения вернет метод getBoundingClientRect()?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">x, y, width, height, top, left, right, buttom.</p>
+                <p class="qa-box__answer">Браузеры IE и Edge не возвращают свойства x/y</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Что делает метод elem.elementFromPoint(x, y)?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Возвращает самый глубоко вложенный элемент в указанной координате.</p>
+            </div>
+        </div>
+        <div class="qa-box">
+            <div class="qa-box__question-box">
+                <h2 class="qa-box__question">Как можно получить координаты элемента относительно документа?</h2>
+            </div>
+            <div class="qa-box__answer-box">
+                <p class="qa-box__answer">Универсального метода нет. Но мы может получить координаты относительно окна браузера и прибавить расстояние прокрутки. </p>
+            </div>
+        </div>
+
+    </section>        
+</body>
+</html>
